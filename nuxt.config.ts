@@ -4,7 +4,7 @@ const lifecycle = process.env.npm_lifecycle_event;
 
 export default defineNuxtConfig({
   // css
-  css: ["~/assets/scss/index.scss", "~/assets/css/common.css"],
+  css: ["~/assets/scss/index.scss", "~/assets/css/common.css", 'animate.css/animate.min.css'],
 
   // build
   build: {
