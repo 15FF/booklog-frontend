@@ -1,7 +1,5 @@
 import { defineNuxtConfig } from 'nuxt';
 
-const lifecycle = process.env.npm_lifecycle_event;
-
 export default defineNuxtConfig({
   // css
   css: [
@@ -24,5 +22,5 @@ export default defineNuxtConfig({
   },
 
   // build modules
-  buildModules: ["nuxt-windicss", "@pinia/nuxt"],
+  buildModules: ["@pinia/nuxt"],
 })
