@@ -1,16 +1,26 @@
 import { defineNuxtConfig } from 'nuxt';
 
-const lifecycle = process.env.npm_lifecycle_event;
-
 export default defineNuxtConfig({
   // css
-  css: ["~/assets/scss/index.scss", "~/assets/css/common.css", 'animate.css/animate.min.css'],
+  css: [
+    "~/assets/scss/index.scss", 
+    "~/assets/css/common.css", 
+    'animate.css/animate.min.css',
+    'vuetify/lib/styles/main.sass',
+    '@mdi/font/css/materialdesignicons.min.css',
+  ],
 
   // build
   build: {
-    transpile: lifecycle === "build" ? ["element-plus"] : [],
+    transpile: ['vuetify'],
+  },
+
+  vite: {
+    define: {
+      'process.env.DEBUG': false,
+    },
   },
 
   // build modules
-  buildModules: ["nuxt-windicss", "@pinia/nuxt"],
+  buildModules: ["@pinia/nuxt"],
 })
