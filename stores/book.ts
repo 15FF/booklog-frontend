@@ -4,6 +4,10 @@ export const useBookStore = defineStore('book', () => {
   let bookQuery = ref('');
   let books = ref([]);
 
+  function clear() {
+    bookQuery = ref('');
+  }
+
   function call() {
     console.log(bookQuery.value);
     console.log(books.value);
@@ -37,9 +41,10 @@ export const useBookStore = defineStore('book', () => {
         }
       ]
     }
+
     result.items.forEach((book) => {
       books.value.push(book);
     })
   }
-  return { bookQuery, call, books };
+  return { bookQuery, clear, call, books };
 })
