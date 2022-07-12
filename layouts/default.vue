@@ -2,10 +2,10 @@
   <v-layout>
     
     <v-app-bar class="animate__animated animate__fadeIn" flat>
-      <v-btn variant="text" href="/">BookLog</v-btn>
-      <v-btn variant="text" href="/review" >Review</v-btn>
+      <v-btn variant="text" to="/">BookLog</v-btn>
+      <v-btn variant="text" to="/review" >Review</v-btn>
       <v-spacer></v-spacer>
-      <v-btn variant="text" href="/user" icon="mdi-account-outline"></v-btn>
+      <v-btn variant="text" to="/user" icon="mdi-account-outline"></v-btn>
     </v-app-bar>
     
     <v-main>
