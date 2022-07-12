@@ -16,7 +16,7 @@
     </v-container>
     <v-container>
       <v-radio-group
-        :v-model="review.selectedBooks"
+        v-model="review.selectedBooks"
         mandatory
       >
       <v-table>
@@ -34,8 +34,8 @@
           <tr
             v-for="item in book.books"
             :key="item.isbn"
-          >    
-            
+            @click="review.selectedBooks = item.isbn"
+          >
             <td><v-radio :value="item.isbn"></v-radio></td>
             <td>{{ item.title }}</td>
             <td>{{ item.author }}</td>
@@ -44,7 +44,13 @@
           </tr>
         </tbody>
       </v-table>
-      </v-radio-group>  
+      </v-radio-group>
+      <div class="d-flex justify-end">
+        <v-btn color="primary" size="large">
+          독서록 작성
+          <v-icon class="ml-3">mdi-arrow-right</v-icon>
+        </v-btn>
+      </div>
     </v-container>
   </div>
 </template>
