@@ -33,10 +33,10 @@
         <tbody>
           <tr
             v-for="item in book.books"
-            :key="item.isbn"
-            @click="review.selectedBooks = item.isbn"
+            :key="item"
+            @click="review.selectedBooks = item"
           >
-            <td><v-radio :value="item.isbn"></v-radio></td>
+            <td><v-radio :value="item"></v-radio></td>
             <td>{{ item.title }}</td>
             <td>{{ item.author }}</td>
             <td>{{ item.publisher }}</td>
@@ -46,7 +46,7 @@
       </v-table>
       </v-radio-group>
       <div class="d-flex justify-end">
-        <v-btn color="primary" size="large">
+        <v-btn color="primary" size="large" to="/new-review/write" :disabled="!review.selectedBooks">
           독서록 작성
           <v-icon class="ml-3">mdi-arrow-right</v-icon>
         </v-btn>
@@ -56,8 +56,8 @@
 </template>
 
 <script setup>
-import { useBookStore } from '../stores/book';
-import { useReviewStore } from '../stores/review';
+import { useBookStore } from '~~/stores/book';
+import { useReviewStore } from '~~/stores/review';
 
 const book = useBookStore();
 const review = useReviewStore();
