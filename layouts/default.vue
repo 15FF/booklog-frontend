@@ -3,9 +3,9 @@
 
     <v-app-bar class="animate__animated animate__fadeIn" flat>
       <v-btn variant="text" to="/">BookLog</v-btn>
-      <v-btn variant="text" to="/new-review">Review</v-btn>
+      <v-btn variant="text" to="/new-review">New Review</v-btn>
       <v-spacer></v-spacer>
-      <v-btn variant="text">
+      <v-btn variant="text" icon="mdi-account-outline">
         <v-icon>mdi-account-outline</v-icon>
         <v-menu activator="parent">
           <v-list>
