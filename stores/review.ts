@@ -1,11 +1,11 @@
 import { defineStore } from "pinia";
 
 export const useReviewStore = defineStore('review', () => {
-  let selectedBooks = ref();
+  const selectedBooks = ref();
+  const title = ref();
+  const rating = ref();
+  const status = ref();
+  const dsecription = ref();
 
-  function call(book) {
-    selectedBooks.value = JSON.stringify(book);
-    console.log(selectedBooks.value);
-  }
-  return { selectedBooks, call };
+  return { selectedBooks, title, rating, status, dsecription };
 })
