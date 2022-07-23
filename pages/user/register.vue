@@ -37,7 +37,7 @@ async function register() {
     "password": password.value,
   };  
 
-  const { data, pending, refresh, error } = await useFetch('http://localhost:3000/auth/register', {
+  await useFetch('http://localhost:3000/auth/register', {
     method: 'POST',
     body: body
   });
