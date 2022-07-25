@@ -1,5 +1,5 @@
 <template>
-  <div class="animate__animated animate__fadeIn">
+  <div>
     <v-container>
       <v-form>
         <v-text-field v-model="review.selectedBooks.title" label="도서명" disabled></v-text-field>
