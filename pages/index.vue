@@ -1,5 +1,5 @@
 <template>
-  <div class="animate__animated animate__fadeIn">
+  <div>
     <v-container fluid>
       <v-row dense>
         <v-col v-for="item in reviewlist.reviewlist" :key="item.title" :cols="4">

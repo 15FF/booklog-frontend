@@ -1,5 +1,5 @@
 <template>
-  <div class="animate__animated animate__fadeIn">
+  <div>
     <v-container>
       <v-text-field
         v-model="book.bookQuery"
