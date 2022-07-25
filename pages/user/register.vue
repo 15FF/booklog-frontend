@@ -1,36 +1,35 @@
 <template>
   <div>
     <v-container align="center">
-      <v-card max-width="420px">
-        <v-card-item>
-          <v-card-title>
-            회원가입
-          </v-card-title>
-        </v-card-item>
-        <v-card-item>
-          <Form as="v-form" :validation-schema="registerSchema" v-model="isValid" lazy-validation>
+      <Form as="v-form" @submit="register" :validation-schema="registerSchema">
+        <v-card max-width="420px">
+          <v-card-item>
+            <v-card-title>
+              회원가입
+            </v-card-title>
+          </v-card-item>
+          <v-card-item>
             <TextFieldWithValidation v-model="username" name="username" label="아이디" type="string" />
             <TextFieldWithValidation v-model="password" name="password" label="비밀번호" type="password" />
             <TextFieldWithValidation v-model="passwordConfirm" name="passwordConfirm" label="비밀번호 확인" type="password" />
-          </Form>
-        </v-card-item>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn :disabled="!isValid" @click="register" color="primary">회원가입</v-btn>
-          <v-btn>취소</v-btn>
-        </v-card-actions>
-      </v-card>
+          </v-card-item>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn type="submit" color="primary">회원가입</v-btn>
+            <v-btn>취소</v-btn>
+          </v-card-actions>
+        </v-card>
+      </Form>
     </v-container>
   </div>
 </template>
 <script setup>
-import { Form } from 'vee-validate';
+import { Form, useForm } from 'vee-validate';
 import * as yup from 'yup';
 
 const username = ref('');
 const password = ref('');
 const passwordConfirm = ref('');
-const isValid = ref(false);
 
 const registerSchema = yup.object({
   username: yup.string().min(4).required().label('아이디'),
@@ -39,6 +38,10 @@ const registerSchema = yup.object({
     .string()
     .oneOf([yup.ref('password')], '비밀번호가 일치하지 않습니다.')
     .required(),
+});
+
+useForm({
+  validationSchema: registerSchema
 });
 
 async function register() {
