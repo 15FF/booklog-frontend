@@ -8,15 +8,15 @@
           </v-card-title>
         </v-card-item>
         <v-card-item>
-          <v-form ref="form" v-model="valid" lazy-validation>
-            <v-text-field v-model="username" :rules="[rules_required, rules_username_length]" clearable label="아이디"></v-text-field>
-            <v-text-field v-model="password" :rules="[rules_required, rules_password_length]" clearable label="비밀번호" type="password"></v-text-field>
-            <v-text-field v-model="passwordConfirm" :rules="[rules_required, rules_confirm]" clearable label="비밀번호 확인" type="password"></v-text-field>
-          </v-form>
+          <Form as="v-form" :validation-schema="registerSchema" v-model="isValid" lazy-validation>
+            <TextFieldWithValidation v-model="username" name="username" label="아이디" type="string" />
+            <TextFieldWithValidation v-model="password" name="password" label="비밀번호" type="password" />
+            <TextFieldWithValidation v-model="passwordConfirm" name="passwordConfirm" label="비밀번호 확인" type="password" />
+          </Form>
         </v-card-item>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn :disabled="!valid" @click="register" color="primary">회원가입</v-btn>
+          <v-btn :disabled="!isValid" @click="register" color="primary">회원가입</v-btn>
           <v-btn>취소</v-btn>
         </v-card-actions>
       </v-card>
@@ -24,11 +24,22 @@
   </div>
 </template>
 <script setup>
+import { Form } from 'vee-validate';
+import * as yup from 'yup';
 
 const username = ref('');
 const password = ref('');
 const passwordConfirm = ref('');
-let valid = ref(false);
+const isValid = ref(false);
+
+const registerSchema = yup.object({
+  username: yup.string().min(4).required().label('아이디'),
+  password: yup.string().min(8).required().label('비밀번호'),
+  passwordConfirm: yup
+    .string()
+    .oneOf([yup.ref('password')], '비밀번호가 일치하지 않습니다.')
+    .required(),
+});
 
 async function register() {
   const body = {
@@ -45,9 +56,4 @@ async function register() {
     path: '/',
   })
 }
-
-const rules_required = value => !!value  || '필수 필드입니다.';
-const rules_username_length = value => value.length >= 4  || '아이디는 4자리 이상이어야 합니다.';
-const rules_password_length = value => value.length >= 8  || '비밀번호는 8자리 이상이어야 합니다.';
-const rules_confirm = value => value == password.value || '비밀번호와 동일해야 합니다.';
 </script>
