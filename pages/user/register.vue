@@ -20,16 +20,25 @@
           </v-card-actions>
         </v-card>
       </Form>
+      <v-snackbar v-model="registerAlert" location="bottom">회원가입 실패
+        <template v-slot:actions>
+          <v-btn color="red" variant="text" @click="registerAlert = false">
+            닫기
+          </v-btn>
+        </template>
+      </v-snackbar>
     </v-container>
   </div>
 </template>
 <script setup>
 import { Form, useForm } from 'vee-validate';
 import * as yup from 'yup';
+import useAuthService from '~~/composables/useAuthService';
 
 const username = ref('');
 const password = ref('');
 const passwordConfirm = ref('');
+const registerAlert = ref(false);
 
 const registerSchema = yup.object({
   username: yup.string().min(4).required().label('아이디'),
@@ -45,15 +54,14 @@ useForm({
 });
 
 async function register() {
-  const body = {
-    "username": username.value,
-    "password": password.value,
-  };  
+  const authService = useAuthService();
 
-  await useFetch('http://localhost:3000/auth/register', {
-    method: 'POST',
-    body: body
-  });
+  const { value, error } = await authService.register(username.value, password.value);
+
+  if (error.value) {
+    alert.value = true;
+    return;
+  }
 
   return navigateTo({
     path: '/',
