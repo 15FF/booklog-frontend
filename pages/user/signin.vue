@@ -19,6 +19,13 @@
         </v-card-actions>
       </v-card>
       </Form>
+      <v-snackbar v-model="signinAlert" location="bottom">로그인 실패
+        <template v-slot:actions>
+          <v-btn color="red" variant="text" @click="signinAlert = false">
+            닫기
+          </v-btn>
+        </template>
+      </v-snackbar>
     </v-container>
   </div>
 </template>
@@ -30,6 +37,7 @@ import * as yup from 'yup';
 
 const username = ref('');
 const password = ref('');
+const signinAlert = ref(false);
 
 const signinSchema = yup.object({
   username: yup.string().min(4).required().label('아이디'),
@@ -41,17 +49,17 @@ useForm({
 });
 
 async function signin() {
-  const body = {
-    "username": username.value,
-    "password": password.value,
-  };  
+  const authService = useAuthService();
 
-  const result = await useFetch('http://localhost:3000/auth/signin', {
-    method: 'POST',
-    body: body
-  });
+  const { data, error } = await authService.signin(username.value, password.value);
+
+  if (error.value) {
+    signinAlert.value = true;
+    return;
+  }
+
   const auth = useAuthStore();  
-  auth.accessToken = result.data.value.accessToken;
+  auth.accessToken = data.value['accessToken'];
 
   return navigateTo({
     path: '/',
