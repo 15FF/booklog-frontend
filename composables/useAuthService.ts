@@ -9,7 +9,7 @@ export default () => {
       "password": password,
     };  
   
-    return await useFetch('http://localhost:3000/auth/register', {
+    return await useFetch('/api/auth/register', {
       method: 'post',
       body: body,
     });
@@ -23,7 +23,7 @@ export default () => {
       "password": password,
     };  
   
-    return await useFetch('http://localhost:3000/auth/signin', {
+    return await useFetch('/api/auth/signin', {
       method: 'POST',
       body: body
     });
