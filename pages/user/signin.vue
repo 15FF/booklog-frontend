@@ -49,17 +49,14 @@ useForm({
 });
 
 async function signin() {
-  const authService = useAuthService();
+  const authStore = useAuthStore();
 
-  const { data, error } = await authService.signin(username.value, password.value);
+  const { error } = await authStore.signin(username.value, password.value);
 
   if (error.value) {
     signinAlert.value = true;
     return;
   }
-
-  const auth = useAuthStore();  
-  auth.accessToken = data.value['accessToken'];
 
   return navigateTo({
     path: '/',

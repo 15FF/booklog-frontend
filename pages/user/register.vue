@@ -33,7 +33,7 @@
 <script setup>
 import { Form, useForm } from 'vee-validate';
 import * as yup from 'yup';
-import useAuthService from '~~/composables/useAuthService';
+import { useAuthStore } from '~~/stores/auth';
 
 const username = ref('');
 const password = ref('');
@@ -54,12 +54,12 @@ useForm({
 });
 
 async function register() {
-  const authService = useAuthService();
+  const authStore = useAuthStore();
 
-  const { value, error } = await authService.register(username.value, password.value);
+  const { error } = await authStore.register(username.value, password.value);
 
   if (error.value) {
-    alert.value = true;
+    registerAlert.value = true;
     return;
   }
 
