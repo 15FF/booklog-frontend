@@ -22,5 +22,8 @@
 const props = defineProps({
   error: Object
 })
-const handleError = () => clearError('/');
+const handleError = () => {
+  clearError('/')
+  navigateTo('/');
+}
 </script>
