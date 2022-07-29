@@ -1,24 +1,22 @@
 <template>
   <div>
-    <v-container>
-      <v-text-field
-        v-model="book.bookQuery"
-        append-icon="mdi-magnify"
-        filled
-        clear-icon="mdi-close-circle"
-        clearable
-        label="도서명"
-        type="text"
-        @click:clear="book.clear()"
-        @click:append="book.call()"
-        v-on:keyup.enter="book.call()"
-      ></v-text-field>
-    </v-container>
-    <v-container>
-      <v-radio-group
-        v-model="review.selectedBooks"
-        mandatory
-      >
+  <v-container align="center">
+    <v-text-field
+      v-model="bookStore.bookQuery"
+      append-icon="mdi-magnify"
+      filled
+      clear-icon="mdi-close-circle"
+      clearable
+      label="도서명"
+      type="text"
+      @click:clear="bookStore.clear"
+      @click:append="getBookList"
+      @keypress.enter="getBookList"
+    ></v-text-field>
+    <v-radio-group
+      v-model="reviewStore.selectedBooks"
+      mandatory
+    >
       <v-table>
         <thead>
           <tr>
@@ -29,29 +27,35 @@
             <th class="text-left">출판년도</th>
           </tr>
         </thead>
-
         <tbody>
           <tr
-            v-for="item in book.books"
-            :key="item"
-            @click="review.selectedBooks = item"
+            v-for="book in bookStore.bookList"
+            :key="book"
+            @click="reviewStore.selectedBooks = book"
           >
-            <td><v-radio :value="item"></v-radio></td>
-            <td>{{ item.title }}</td>
-            <td>{{ item.author }}</td>
-            <td>{{ item.publisher }}</td>
-            <td>{{ item.pubdate }}</td>
+            <td><v-radio :value="book"></v-radio></td>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.publisher }}</td>
+            <td>{{ book.pubdate }}</td>
           </tr>
         </tbody>
       </v-table>
-      </v-radio-group>
-      <div class="d-flex justify-end">
-        <v-btn color="primary" size="large" to="/new-review/write" :disabled="!review.selectedBooks">
-          독서록 작성
-          <v-icon class="ml-3">mdi-arrow-right</v-icon>
+    </v-radio-group>
+    <div class="d-flex justify-end">
+      <v-btn color="primary" size="large" to="/new-review/write" :disabled="!reviewStore.selectedBooks">
+        독서록 작성
+        <v-icon class="ml-3">mdi-arrow-right</v-icon>
+      </v-btn>
+    </div>
+    <v-snackbar v-model="getBookListAlert" location="bottom">검색어를 다시 확인해주세요.
+      <template v-slot:actions>
+        <v-btn color="red" variant="text" @click="getBookListAlert = false">
+          닫기
         </v-btn>
-      </div>
-    </v-container>
+      </template>
+    </v-snackbar>
+  </v-container>
   </div>
 </template>
 
@@ -59,11 +63,15 @@
 import { useBookStore } from '~~/stores/book';
 import { useReviewStore } from '~~/stores/review';
 
-const book = useBookStore();
-const review = useReviewStore();
+const bookStore = useBookStore();
+const reviewStore = useReviewStore();
+const getBookListAlert = ref(false);
 
-const tableLayout = 'auto';
+async function getBookList() {
+  const count = await bookStore.getBookList();
+
+  if (count == 0) {
+    getBookListAlert.value = true;
+  }
+}
 </script>
-
-<style scoped>
-</style>
