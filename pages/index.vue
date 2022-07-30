@@ -55,5 +55,3 @@ const getReview = async () => {
   await reviewListStore.getReviewList();
 };
 </script>
-
-<style></style>

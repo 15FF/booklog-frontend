@@ -48,7 +48,3 @@ const saveReview = async () => {
   })
 }
 </script>
-
-<style>
-
-</style>
