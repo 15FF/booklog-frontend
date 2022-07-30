@@ -14,6 +14,8 @@ export const useReviewlistStore = defineStore('reviewlist', () => {
 
     page.value++;
     result['reviews'].forEach((review) => {
+      const shortDescription = review.description.substring(0, 20) + (review.description.length > 20 ? '...' : '');
+      review['shortDescription'] = shortDescription;
       reviewlist.value.push(review);
     })
   }
