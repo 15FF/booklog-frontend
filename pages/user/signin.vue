@@ -48,7 +48,7 @@ useForm({
   validationSchema: signinSchema
 });
 
-async function signin() {
+const signin = async () => {
   const authStore = useAuthStore();
 
   const { error } = await authStore.signin(username.value, password.value);

@@ -53,7 +53,7 @@ useForm({
   validationSchema: registerSchema
 });
 
-async function register() {
+const register = async () => {
   const authStore = useAuthStore();
 
   const { error } = await authStore.register(username.value, password.value);
