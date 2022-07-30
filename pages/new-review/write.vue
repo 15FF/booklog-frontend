@@ -33,7 +33,7 @@ import { useReviewStore } from '~~/stores/review';
 const reviewStore = useReviewStore();
 const saveReviewAlert = ref(false);
 
-async function saveReview() {
+const saveReview = async () => {
   const { data, error } = await reviewStore.saveReview();
 
   if (error.value) {

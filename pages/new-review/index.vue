@@ -67,7 +67,7 @@ const bookStore = useBookStore();
 const reviewStore = useReviewStore();
 const getBookListAlert = ref(false);
 
-async function getBookList() {
+const getBookList = async () => {
   const count = await bookStore.getBookList();
 
   if (count == 0) {

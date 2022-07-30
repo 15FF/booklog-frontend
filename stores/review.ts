@@ -8,10 +8,11 @@ export const useReviewStore = defineStore('review', () => {
     author: '',
     publisher: '',
     pubdate: '',
+    isbn: '',
   });
   const title = ref('');
-  const rating = ref(0);
-  const status = ref('');
+  const rating = ref(5);
+  const status = ref('PUBLIC');
   const dsecription = ref('');
 
   async function saveReview() {
@@ -21,7 +22,7 @@ export const useReviewStore = defineStore('review', () => {
       "bookAuthor": selectedBooks.value.author,
       "bookPublisher": selectedBooks.value.publisher,
       "bookPubdate": selectedBooks.value.pubdate,
-      "bookIsbn": "123456789123",
+      "bookIsbn": selectedBooks.value.isbn,
       "title": title.value,
       "rating": rating.value,
       "status": status.value,
