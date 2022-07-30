@@ -3,6 +3,8 @@ import { defineStore } from "pinia";
 export const useAuthStore = defineStore('auth', () => {
   const accessToken = ref('');
 
+  const isLogined = computed(() => accessToken.value == '' ? false : true);
+
   const register = async (username, password) => {
     if (!username || !password) return;
 
@@ -37,5 +39,5 @@ export const useAuthStore = defineStore('auth', () => {
     return { data, error };
   }
 
-  return { accessToken, register, signin };
+  return { accessToken, register, signin, isLogined};
 })
