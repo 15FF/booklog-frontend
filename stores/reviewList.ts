@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 
-export const useReviewlistStore = defineStore('reviewlist', () => {
-  const reviewlist = ref([]);
+export const useReviewListStore = defineStore('revieList', () => {
+  const reviewList = ref([]);
   const page = ref(1);
 
   async function getReviewList() {
@@ -16,9 +16,9 @@ export const useReviewlistStore = defineStore('reviewlist', () => {
     result['reviews'].forEach((review) => {
       const shortDescription = review.description.substring(0, 20) + (review.description.length > 20 ? '...' : '');
       review['shortDescription'] = shortDescription;
-      reviewlist.value.push(review);
+      reviewList.value.push(review);
     })
   }
 
-  return { reviewlist, getReviewList };
+  return { reviewList, getReviewList };
 })
