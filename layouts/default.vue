@@ -55,5 +55,3 @@ const logout = () => {
   navigateTo("/");
 };
 </script>
-
-<style scoped></style>

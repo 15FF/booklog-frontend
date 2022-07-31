@@ -9,8 +9,8 @@
 </template>
 
 <script setup>
-import { defineProps, toRef } from 'vue';
-import { useField } from 'vee-validate';
+import { defineProps, toRef } from "vue";
+import { useField } from "vee-validate";
 
 const props = defineProps({
   name: {
@@ -27,5 +27,5 @@ const props = defineProps({
   },
 });
 
-const { value, handleBlur, errors } = useField(toRef(props, 'name'), undefined);
+const { value, handleBlur, errors } = useField(toRef(props, "name"), undefined);
 </script>
