@@ -29,8 +29,8 @@
 </template>
 
 <script setup>
-import { useReviewStore } from '~~/stores/reviewSave';
-const reviewSaveStore = useReviewStore();
+import { useReviewSaveStore } from '~~/stores/reviewSave';
+const reviewSaveStore = useReviewSaveStore();
 const saveReviewAlert = ref(false);
 
 const saveReview = async () => {
