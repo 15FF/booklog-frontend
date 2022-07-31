@@ -14,7 +14,7 @@
       @keypress.enter="getBookList"
     ></v-text-field>
     <v-radio-group
-      v-model="reviewStore.selectedBooks"
+      v-model="reviewSaveStore.selectedBooks"
       mandatory
     >
       <v-table>
@@ -31,7 +31,7 @@
           <tr
             v-for="book in bookStore.bookList"
             :key="book"
-            @click="reviewStore.selectedBooks = book"
+            @click="reviewSaveStore.selectedBooks = book"
           >
             <td><v-radio :value="book"></v-radio></td>
             <td>{{ book.title }}</td>
@@ -43,7 +43,7 @@
       </v-table>
     </v-radio-group>
     <div class="d-flex justify-end">
-      <v-btn color="primary" size="large" to="/new-review/write" :disabled="!reviewStore.selectedBooks">
+      <v-btn color="primary" size="large" to="/new-review/write" :disabled="!reviewSaveStore.selectedBooks">
         독서록 작성
         <v-icon class="ml-3">mdi-arrow-right</v-icon>
       </v-btn>
@@ -61,10 +61,10 @@
 
 <script setup>
 import { useBookStore } from '~~/stores/book';
-import { useReviewStore } from '~~/stores/review';
+import { useReviewSaveStore } from '~~/stores/reviewSave';
 
 const bookStore = useBookStore();
-const reviewStore = useReviewStore();
+const reviewSaveStore = useReviewSaveStore();
 const getBookListAlert = ref(false);
 
 const getBookList = async () => {

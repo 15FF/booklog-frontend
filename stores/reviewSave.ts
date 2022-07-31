@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { useAuthStore } from "./auth";
 
-export const useReviewStore = defineStore('review', () => {
+export const useReviewSaveStore = defineStore('reviewSave', () => {
   const selectedBooks = ref({
     title: '',
     image: '',
