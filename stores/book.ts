@@ -1,24 +1,24 @@
 import { defineStore } from "pinia";
 
-export const useBookStore = defineStore('book', () => {
-  const bookQuery = ref('');
+export const useBookStore = defineStore("book", () => {
+  const bookQuery = ref("");
   const bookList = ref([]);
 
   function clear() {
-    bookQuery.value = '';
+    bookQuery.value = "";
   }
 
-  async function getBookList() {
+  const getBookList = async () => {
     bookList.value = [];
 
     const { data } = await useFetch(`/api/books?bookQuery=${bookQuery.value}`);
 
-    data.value['items'].forEach((book) => {
+    data.value["items"].forEach((book) => {
       bookList.value.push(book);
     });
 
-    return data.value['count'];
-  }
+    return data.value["count"];
+  };
 
   return { bookQuery, bookList, clear, getBookList };
-})
+});

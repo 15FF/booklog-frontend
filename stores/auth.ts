@@ -1,20 +1,20 @@
 import { defineStore } from "pinia";
 
-export const useAuthStore = defineStore('auth', () => {
-  const accessToken = ref('');
+export const useAuthStore = defineStore("auth", () => {
+  const accessToken = ref("");
 
-  const isLogined = computed(() => accessToken.value == '' ? false : true);
+  const isLogined = computed(() => (accessToken.value == "" ? false : true));
 
   const register = async (username, password) => {
     if (!username || !password) return;
 
     const body = {
-      "username": username,
-      "password": password,
-    };  
-  
-    return await useFetch('/api/auth/register', {
-      method: 'post',
+      username: username,
+      password: password,
+    };
+
+    return await useFetch("/api/auth/register", {
+      method: "post",
       body: body,
     });
   };
@@ -23,21 +23,21 @@ export const useAuthStore = defineStore('auth', () => {
     if (!username || !password) return;
 
     const body = {
-      "username": username,
-      "password": password,
-    };  
-  
-    const { data, error } =  await useFetch('/api/auth/signin', {
-      method: 'POST',
-      body: body
+      username: username,
+      password: password,
+    };
+
+    const { data, error } = await useFetch("/api/auth/signin", {
+      method: "POST",
+      body: body,
     });
 
     if (!error.value) {
-      accessToken.value = data.value['accessToken'];
+      accessToken.value = data.value["accessToken"];
     }
 
     return { data, error };
-  }
+  };
 
-  return { accessToken, register, signin, isLogined};
-})
+  return { accessToken, register, signin, isLogined };
+});

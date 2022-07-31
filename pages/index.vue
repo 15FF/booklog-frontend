@@ -41,7 +41,7 @@
           </v-card>
         </v-col>
       </v-row>
-      <v-card v-intersect="getReview"></v-card>
+      <v-card v-intersect="getReviewList"></v-card>
     </v-container>
   </div>
 </template>
@@ -51,7 +51,7 @@ import { useReviewListStore } from "~~/stores/reviewList";
 
 const reviewListStore = useReviewListStore();
 
-const getReview = async () => {
+const getReviewList = async () => {
   await reviewListStore.getReviewList();
 };
 </script>
