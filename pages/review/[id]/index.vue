@@ -38,7 +38,7 @@
         <v-divider></v-divider>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="warning" :to="route.params.id + '/modify'">수정</v-btn>
+          <v-btn color="warning" :to="route.params.id + '/update'">수정</v-btn>
           <v-btn color="red" @click="isDeleteAlert = true">삭제</v-btn>
         </v-card-actions>
       </v-card>
@@ -50,21 +50,15 @@
       >
         <div class="text-subtitle-1 pb-2">정말 삭제하시겠습니까?</div>
         <template v-slot:actions>
-          <v-btn color="red" variant="outlined" @click="deleteReview">네</v-btn>
+          <v-btn color="red" @click="deleteReview">네</v-btn>
           &nbsp;
-          <v-btn
-            color="indigo"
-            variant="outlined"
-            @click="isDeleteAlert = false"
-          >
-            아니오
-          </v-btn>
+          <v-btn color="indigo" @click="isDeleteAlert = false"> 아니오 </v-btn>
         </template>
       </v-snackbar>
-      <v-snackbar v-model="deleteAlert" location="bottom"
+      <v-snackbar v-model="deleteReviewAlert" location="bottom"
         >독서록 삭제에 실패했습니다.
         <template v-slot:actions>
-          <v-btn color="red" variant="text" @click="deleteAlert = false">
+          <v-btn color="red" variant="text" @click="deleteReviewAlert = false">
             닫기
           </v-btn>
         </template>
@@ -77,7 +71,7 @@
 import { useReviewStore } from "~~/stores/review";
 
 const isDeleteAlert = ref(false);
-const deleteAlert = ref(false);
+const deleteReviewAlert = ref(false);
 const route = useRoute();
 const reviewStore = useReviewStore();
 await reviewStore.getReview(route.params.id.toString());
@@ -87,7 +81,7 @@ const deleteReview = async () => {
   const { data, error } = await reviewStore.deleteReview();
 
   if (error.value) {
-    deleteAlert.value = true;
+    deleteReviewAlert.value = true;
     return;
   }
 
