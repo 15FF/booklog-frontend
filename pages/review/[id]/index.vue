@@ -1,13 +1,8 @@
 <template>
   <div>
     <v-container align="center">
-      <v-card variant="outlined" align="left" max-width="480px">
-        <v-img
-          class="rounded-lg"
-          :src="reviewStore.review.bookImage"
-          height="200px"
-          cover
-        ></v-img>
+      <v-card align="left" max-width="480px">
+        <v-img :src="reviewStore.review.bookImage" height="200px" cover></v-img>
         <v-card-item>
           <v-card-title>{{ reviewStore.review.bookTitle }}</v-card-title>
           <v-card-subtitle>
@@ -43,10 +38,8 @@
         <v-divider></v-divider>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="amber" variant="outlined">수정</v-btn>
-          <v-btn color="red" variant="outlined" @click="isDeleteAlert = true"
-            >삭제</v-btn
-          >
+          <v-btn color="warning" :to="route.params.id + '/modify'">수정</v-btn>
+          <v-btn color="red" @click="isDeleteAlert = true">삭제</v-btn>
         </v-card-actions>
       </v-card>
       <v-snackbar
