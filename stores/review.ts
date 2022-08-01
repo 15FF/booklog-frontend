@@ -11,6 +11,9 @@ export const useReviewStore = defineStore("review", () => {
     });
 
     review.value = data.value;
+
+    // 백엔드 API 수정 전까지 임시로 추가
+    review.value["status"] = "PUBLIC";
     return { data, error };
   };
 
@@ -26,9 +29,35 @@ export const useReviewStore = defineStore("review", () => {
       }
     );
     useReviewListStore().reset();
-    
+
     return { data, error };
   };
 
-  return { review, getReview, deleteReview };
+  const updateReview = async () => {
+    const authStore = useAuthStore();
+
+    const body = {
+      title: review.value["title"],
+      rating: review.value["rating"],
+      status: review.value["status"],
+      description: review.value["description"],
+    };
+    
+    const { data, error } = await useFetch(
+      "/api/review/" + review.value["id"],
+      {
+        method: "PATCH",
+        body: body,
+        headers: {
+          Authorization: "Bearer " + authStore.accessToken,
+        },
+      }
+    );
+
+    useReviewListStore().reset();
+    
+    return { data, error }
+  };
+
+  return { review, getReview, deleteReview, updateReview };
 });
