@@ -38,25 +38,66 @@
         <v-divider></v-divider>
         <v-card-item>
           <v-card-title>후기</v-card-title>
-          <v-card-subtitle>
-            {{ reviewStore.review.description }}</v-card-subtitle
-          ></v-card-item
-        >
+        </v-card-item>
+        <v-card-text> {{ reviewStore.review.description }}</v-card-text>
         <v-divider></v-divider>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="amber" variant="text">수정</v-btn>
-          <v-btn color="red" variant="text">삭제</v-btn>
+          <v-btn color="amber" variant="outlined">수정</v-btn>
+          <v-btn color="red" variant="outlined" @click="isDeleteAlert = true"
+            >삭제</v-btn
+          >
         </v-card-actions>
       </v-card>
+      <v-snackbar
+        v-model="isDeleteAlert"
+        color="background"
+        vertical
+        location="center"
+      >
+        <div class="text-subtitle-1 pb-2">정말 삭제하시겠습니까?</div>
+        <template v-slot:actions>
+          <v-btn color="red" variant="outlined" @click="deleteReview">네</v-btn>
+          &nbsp;
+          <v-btn
+            color="indigo"
+            variant="outlined"
+            @click="isDeleteAlert = false"
+          >
+            아니오
+          </v-btn>
+        </template>
+      </v-snackbar>
+      <v-snackbar v-model="deleteAlert" location="bottom"
+        >독서록 삭제에 실패했습니다.
+        <template v-slot:actions>
+          <v-btn color="red" variant="text" @click="deleteAlert = false">
+            닫기
+          </v-btn>
+        </template>
+      </v-snackbar>
     </v-container>
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useReviewStore } from "~~/stores/review";
 
+const isDeleteAlert = ref(false);
+const deleteAlert = ref(false);
 const route = useRoute();
 const reviewStore = useReviewStore();
-await reviewStore.getReview(route.params.id);
+await reviewStore.getReview(route.params.id.toString());
+
+const deleteReview = async () => {
+  isDeleteAlert.value = false;
+  const { data, error } = await reviewStore.deleteReview();
+
+  if (error.value) {
+    deleteAlert.value = true;
+    return;
+  }
+
+  return navigateTo("/");
+};
 </script>
