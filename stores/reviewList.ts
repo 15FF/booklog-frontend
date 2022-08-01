@@ -12,6 +12,7 @@ export const useReviewListStore = defineStore("reviewList", () => {
     }
 
     page.value++;
+    
     result["reviews"].forEach((review) => {
       const shortDescription =
         review.description.substring(0, 20) +
@@ -21,5 +22,10 @@ export const useReviewListStore = defineStore("reviewList", () => {
     });
   };
 
-  return { reviewList, getReviewList };
+  const reset = async () => {
+    reviewList.value = [];
+    page.value = 1;
+  }
+
+  return { reviewList, getReviewList, reset };
 });

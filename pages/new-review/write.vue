@@ -69,8 +69,6 @@ const saveReview = async () => {
     return;
   }
 
-  console.log(data.value);
-
   return navigateTo({
     path: "/review/" + data.value,
   });

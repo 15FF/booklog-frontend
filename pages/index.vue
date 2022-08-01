@@ -6,6 +6,9 @@
           v-for="review in reviewListStore.reviewList"
           cols="12"
           sm="4"
+          lg="4"
+          xl="3"
+          xxl="2"
           :key="review.title"
         >
           <v-card variant="outlined" :to="'/review/' + review.id" align="left">
@@ -49,9 +52,15 @@
 <script setup>
 import { useReviewListStore } from "~~/stores/reviewList";
 
+const isIntersect = ref(false);
 const reviewListStore = useReviewListStore();
 
 const getReviewList = async () => {
+  if (isIntersect.value) {
+    return;
+  }
+  isIntersect.value = true;
   await reviewListStore.getReviewList();
+  isIntersect.value = false;
 };
 </script>

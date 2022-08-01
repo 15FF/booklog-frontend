@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { useAuthStore } from "./auth";
+import { useReviewListStore } from "./reviewList";
 
 export const useReviewSaveStore = defineStore("reviewSave", () => {
   const selectedBooks = ref({
@@ -38,6 +39,8 @@ export const useReviewSaveStore = defineStore("reviewSave", () => {
       },
     });
 
+    useReviewListStore().reset();
+    
     return { data, error };
   }
 
