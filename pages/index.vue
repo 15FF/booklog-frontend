@@ -11,13 +11,8 @@
           xxl="2"
           :key="review.title"
         >
-          <v-card variant="outlined" :to="'/review/' + review.id" align="left">
-            <v-img
-              class="rounded-lg"
-              :src="review.bookImage"
-              height="200px"
-              cover
-            ></v-img>
+          <v-card :to="'/review/' + review.id" align="left">
+            <v-img :src="review.bookImage" height="200px" cover></v-img>
             <v-card-item>
               <v-card-title>{{ review.title }}</v-card-title>
               <v-card-subtitle>
