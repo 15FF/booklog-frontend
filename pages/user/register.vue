@@ -2,7 +2,7 @@
   <div>
     <v-container align="center">
       <Form as="v-form" @submit="register" :validation-schema="registerSchema">
-        <v-card max-width="420px">
+        <v-card variant="outlined" max-width="420px">
           <v-card-item>
             <v-card-title> 회원가입 </v-card-title>
           </v-card-item>
@@ -29,14 +29,13 @@
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn type="submit" color="primary">회원가입</v-btn>
-            <v-btn>취소</v-btn>
           </v-card-actions>
         </v-card>
       </Form>
       <v-snackbar v-model="registerAlert" location="bottom"
         >회원가입 실패
         <template v-slot:actions>
-          <v-btn color="red" variant="text" @click="registerAlert = false">
+          <v-btn color="red" @click="registerAlert = false">
             닫기
           </v-btn>
         </template>

@@ -1,6 +1,6 @@
 <template>
   <v-container align="center">
-    <v-card width="480px">
+    <v-card variant="outlined" width="480px">
       <v-card-item>
         <v-card-title> 404 Not Found </v-card-title>
       </v-card-item>
