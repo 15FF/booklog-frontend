@@ -15,6 +15,7 @@
     "axios": "^0.27.2",
     "dotenv": "^16.0.1",
     "pinia": "^2.0.14",
+    "pinia-plugin-persistedstate": "^2.0.1",
     "sass": "^1.53.0",
     "vee-validate": "^4.6.2",
     "vuetify": "^3.0.0-beta.5",
