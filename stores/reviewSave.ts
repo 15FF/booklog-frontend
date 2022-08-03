@@ -14,7 +14,7 @@ export const useReviewSaveStore = defineStore("reviewSave", () => {
   const title = ref("");
   const rating = ref(5);
   const status = ref("PUBLIC");
-  const dsecription = ref("");
+  const description = ref("");
 
   const saveReview = async () => {
     const body = {
@@ -27,7 +27,7 @@ export const useReviewSaveStore = defineStore("reviewSave", () => {
       title: title.value,
       rating: rating.value,
       status: status.value,
-      description: dsecription.value,
+      description: description.value,
     };
     const authStore = useAuthStore();
 
@@ -40,9 +40,9 @@ export const useReviewSaveStore = defineStore("reviewSave", () => {
     });
 
     useReviewListStore().reset();
-    
-    return { data, error };
-  }
 
-  return { selectedBooks, title, rating, status, dsecription, saveReview };
+    return { data, error };
+  };
+
+  return { selectedBooks, title, rating, status, description, saveReview };
 });
