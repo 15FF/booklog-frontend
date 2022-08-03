@@ -42,7 +42,7 @@ export const useReviewStore = defineStore("review", () => {
       status: review.value["status"],
       description: review.value["description"],
     };
-    
+
     const { data, error } = await useFetch(
       "/api/review/" + review.value["id"],
       {
@@ -55,8 +55,8 @@ export const useReviewStore = defineStore("review", () => {
     );
 
     useReviewListStore().reset();
-    
-    return { data, error }
+
+    return { data, error };
   };
 
   return { review, getReview, deleteReview, updateReview };

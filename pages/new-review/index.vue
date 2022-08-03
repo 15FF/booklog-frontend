@@ -20,11 +20,11 @@
             <v-table>
               <thead>
                 <tr>
-                  <th></th>
-                  <th class="text-left">도서명</th>
-                  <th class="text-left">저자</th>
-                  <th class="text-left">출판사</th>
-                  <th class="text-left">출판년도</th>
+                  <th scope="col"></th>
+                  <th scope="col" class="text-left">도서명</th>
+                  <th scope="col" class="text-left">저자</th>
+                  <th scope="col" class="text-left">출판사</th>
+                  <th scope="col" class="text-left">출판년도</th>
                 </tr>
               </thead>
               <tbody>

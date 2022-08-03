@@ -44,7 +44,7 @@
               label="독서록 제목"
             ></v-text-field>
             <v-textarea
-              v-model="reviewSaveStore.dsecription"
+              v-model="reviewSaveStore.description"
               label="독서록 내용"
               auto-grow
             ></v-textarea>
