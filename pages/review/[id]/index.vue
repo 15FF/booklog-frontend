@@ -78,7 +78,7 @@ await reviewStore.getReview(route.params.id.toString());
 
 const deleteReview = async () => {
   isDeleteAlert.value = false;
-  const { data, error } = await reviewStore.deleteReview();
+  const { error } = await reviewStore.deleteReview();
 
   if (error.value) {
     deleteReviewAlert.value = true;
