@@ -1,8 +1,12 @@
 <template>
   <div>
-    <v-container align="center">
+    <v-container>
       <v-card variant="outlined" align="left" max-width="820px">
-        <v-form>
+        <Form
+          as="v-form"
+          @submit="saveReview"
+          :validation-schema="reviewSaveSchema"
+        >
           <v-card-title> 독서록 작성 </v-card-title>
           <v-card-item align="center">
             <v-text-field
@@ -39,25 +43,21 @@
                   ></v-switch> </v-col
               ></v-row>
             </v-card-item>
-            <v-text-field
+            <TextFieldWithValidation
               v-model="reviewSaveStore.title"
+              name="title"
               label="독서록 제목"
-            ></v-text-field>
-            <v-textarea
+            />
+            <TextAreaWithValidation
               v-model="reviewSaveStore.description"
+              name="description"
               label="독서록 내용"
-              auto-grow
-            ></v-textarea>
+            />
           </v-card-item>
           <v-divider />
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn
-              color="primary"
-              size="large"
-              @click="saveReview"
-              :disabled="!reviewSaveStore.selectedBooks"
-            >
+            <v-btn color="primary" size="large" type="submit">
               등록
               <v-icon class="ml-3">mdi-arrow-right</v-icon>
             </v-btn>
@@ -74,7 +74,7 @@
               </v-btn>
             </template>
           </v-snackbar>
-        </v-form>
+        </Form>
       </v-card>
     </v-container>
   </div>
@@ -82,8 +82,16 @@
 
 <script setup>
 import { useReviewSaveStore } from "~~/stores/reviewSave";
+import { Form } from "vee-validate";
+import * as yup from "yup";
+
 const reviewSaveStore = useReviewSaveStore();
 const saveReviewAlert = ref(false);
+
+const reviewSaveSchema = yup.object({
+  title: yup.string().required().label("제목"),
+  description: yup.string().required().label("내용"),
+});
 
 const saveReview = async () => {
   const { data, error } = await reviewSaveStore.saveReview();
