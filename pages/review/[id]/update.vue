@@ -1,8 +1,8 @@
 <template>
   <div>
-    <v-container align="center">
+    <v-container>
       <v-card variant="outlined" align="left" max-width="820px">
-        <v-form>
+        <Form as="v-form" @submit="onSubmit" :validation-schema="reviewUpdateSchema">
           <v-card-title> 독서록 수정 </v-card-title>
           <v-card-item align="center">
             <v-text-field
@@ -39,20 +39,21 @@
                   ></v-switch> </v-col
               ></v-row>
             </v-card-item>
-            <v-text-field
+            <TextFieldWithValidation
               v-model="reviewStore.review.title"
+              name="title"
               label="독서록 제목"
-            ></v-text-field>
-            <v-textarea
+            />
+            <TextAreaWithValidation
               v-model="reviewStore.review.description"
+              name="description"
               label="독서록 내용"
-              auto-grow
-            ></v-textarea>
+            />
           </v-card-item>
           <v-divider />
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="primary" size="large" @click="isUpdateAlert = true">
+            <v-btn color="primary" size="large" type="submit">
               수정
               <v-icon class="ml-3">mdi-arrow-right</v-icon>
             </v-btn>
@@ -84,7 +85,7 @@
               </v-btn>
             </template>
           </v-snackbar>
-        </v-form>
+        </Form>
       </v-card>
     </v-container>
   </div>
@@ -92,10 +93,22 @@
 
 <script setup>
 import { useReviewStore } from "~~/stores/review";
+import { Form } from "vee-validate";
+import * as yup from "yup";
 
 const isUpdateAlert = ref(false);
 const updateReviewAlert = ref(false);
 const reviewStore = useReviewStore();
+
+const reviewUpdateSchema = yup.object({
+  // 수정은 기본적으로 값이 들어있기 때문에 default 값을 적용하지 않는다면 yup에서 미변경 필드를 오류 처리함
+  title: yup.string().required().label("제목").default(" "),
+  description: yup.string().required().label("내용").default(" "),
+});
+
+const onSubmit = () => {
+  isUpdateAlert.value = true;
+};
 
 const updateReview = async () => {
   isUpdateAlert.value = false;

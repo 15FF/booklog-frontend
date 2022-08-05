@@ -44,5 +44,16 @@ export const useReviewSaveStore = defineStore("reviewSave", () => {
     return { data, error };
   };
 
-  return { selectedBooks, title, rating, status, description, saveReview };
+  const resetSelectedBooks = () => {
+    selectedBooks.value = {
+      title: "",
+      image: "",
+      author: "",
+      publisher: "",
+      pubdate: "",
+      isbn: "",
+    };
+  };
+
+  return { selectedBooks, title, rating, status, description, saveReview, resetSelectedBooks };
 });

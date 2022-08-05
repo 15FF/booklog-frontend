@@ -48,8 +48,8 @@
           <v-btn
             color="primary"
             size="large"
-            to="/new-review/write"
             :disabled="!reviewSaveStore.selectedBooks"
+            @click="onSubmit"
           >
             독서록 작성
             <v-icon class="ml-3">mdi-arrow-right</v-icon>
@@ -60,6 +60,14 @@
         >검색어를 다시 확인해주세요.
         <template v-slot:actions>
           <v-btn color="red" variant="text" @click="getBookListAlert = false">
+            닫기
+          </v-btn>
+        </template>
+      </v-snackbar>
+      <v-snackbar v-model="selectedBookAlert" location="bottom"
+        >책을 선택해주세요.
+        <template v-slot:actions>
+          <v-btn color="red" variant="text" @click="selectedBookAlert = false">
             닫기
           </v-btn>
         </template>
@@ -75,6 +83,7 @@ import { useReviewSaveStore } from "~~/stores/reviewSave";
 const bookStore = useBookStore();
 const reviewSaveStore = useReviewSaveStore();
 const getBookListAlert = ref(false);
+const selectedBookAlert = ref(false);
 
 const getBookList = async () => {
   const count = await bookStore.getBookList();
@@ -82,5 +91,14 @@ const getBookList = async () => {
   if (count == 0) {
     getBookListAlert.value = true;
   }
+  reviewSaveStore.resetSelectedBooks();
+};
+
+const onSubmit = () => {
+  if (!reviewSaveStore.selectedBooks["isbn"]) {
+    selectedBookAlert.value = true;
+    return;
+  }
+  return navigateTo("/new-review/write");
 };
 </script>
