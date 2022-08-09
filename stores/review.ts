@@ -12,8 +12,6 @@ export const useReviewStore = defineStore("review", () => {
 
     review.value = data.value;
 
-    // 백엔드 API 수정 전까지 임시로 추가
-    review.value["status"] = "PUBLIC";
     return { data, error };
   };
 

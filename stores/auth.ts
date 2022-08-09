@@ -4,6 +4,7 @@ export const useAuthStore = defineStore(
   "auth",
   () => {
     const accessToken = ref("");
+    const user = ref("");
 
     const isLogined = computed(() => (accessToken.value == "" ? false : true));
 
@@ -36,12 +37,13 @@ export const useAuthStore = defineStore(
 
       if (!error.value) {
         accessToken.value = data.value["accessToken"];
+        user.value = data.value["username"];
       }
 
       return { data, error };
     };
 
-    return { accessToken, register, signin, isLogined };
+    return { accessToken, user, register, signin, isLogined };
   },
   {
     persist: true,
