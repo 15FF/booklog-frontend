@@ -6,7 +6,7 @@ export const useReviewStore = defineStore("review", () => {
   const review = ref({});
 
   const getReview = async (id: string) => {
-    const { data, error } = await useFetch("/api/review/" + id, {
+    const { data, error } = await useFetch("https://api.booklog.dev/review/" + id, {
       method: "GET",
     });
 
@@ -18,7 +18,7 @@ export const useReviewStore = defineStore("review", () => {
   const deleteReview = async () => {
     const authStore = useAuthStore();
     const { data, error } = await useFetch(
-      "/api/review/" + review.value["id"],
+      "https://api.booklog.dev/review/" + review.value["id"],
       {
         method: "DELETE",
         headers: {
@@ -42,7 +42,7 @@ export const useReviewStore = defineStore("review", () => {
     };
 
     const { data, error } = await useFetch(
-      "/api/review/" + review.value["id"],
+      "https://api.booklog.dev/review/" + review.value["id"],
       {
         method: "PATCH",
         body: body,

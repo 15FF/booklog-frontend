@@ -13,7 +13,7 @@ export const useBookStore = defineStore("book", () => {
     const authStore = useAuthStore();
     bookList.value = [];
     
-    const { data } = await useFetch("/api/books?bookQuery=" + bookQuery.value, {
+    const { data } = await useFetch("https://api.booklog.dev/books?bookQuery=" + bookQuery.value, {
       method: "GET",
       headers: {
         Authorization: "Bearer " + authStore.accessToken,

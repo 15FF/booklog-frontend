@@ -31,7 +31,7 @@ export const useReviewSaveStore = defineStore("reviewSave", () => {
     };
     const authStore = useAuthStore();
 
-    const { data, error } = await useFetch("/api/review", {
+    const { data, error } = await useFetch("https://api.booklog.dev/review", {
       method: "POST",
       body: body,
       headers: {
