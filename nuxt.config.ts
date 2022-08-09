@@ -23,7 +23,7 @@ export default defineNuxtConfig({
       proxy: {
         "/api": {
           target: "https://api.booklog.dev",
-          rewrite: (path) => path.replace(/^\/api/, ""),
+          rewrite: (path) => path.replace("/api/", "/"),
         },
       },
     },
