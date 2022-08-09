@@ -19,11 +19,11 @@ export default defineNuxtConfig({
       "process.env.DEBUG": false,
     },
     server: {
-      https: true,
       proxy: {
         "/api": {
           target: "https://api.booklog.dev",
           rewrite: (path) => path.replace("/api/", "/"),
+          changeOrigin: true,
         },
       },
     },
