@@ -16,7 +16,7 @@ export const useAuthStore = defineStore(
         password: password,
       };
 
-      return await useFetch("/api/auth/register", {
+      return await useFetch("https://api.booklog.dev/auth/register", {
         method: "post",
         body: body,
       });
@@ -30,7 +30,7 @@ export const useAuthStore = defineStore(
         password: password,
       };
 
-      const { data, error } = await useFetch("/api/auth/signin", {
+      const { data, error } = await useFetch("https://api.booklog.dev/auth/signin", {
         method: "POST",
         body: body,
       });
