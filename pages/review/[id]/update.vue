@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-container>
+    <v-container align="center">
       <v-card variant="outlined" align="left" max-width="820px">
         <Form as="v-form" @submit="onSubmit" :validation-schema="reviewUpdateSchema">
           <v-card-title> 독서록 수정 </v-card-title>
