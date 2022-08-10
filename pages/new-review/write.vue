@@ -87,6 +87,7 @@ import * as yup from "yup";
 
 const reviewSaveStore = useReviewSaveStore();
 const saveReviewAlert = ref(false);
+reviewSaveStore.resetReview();
 
 const reviewSaveSchema = yup.object({
   title: yup.string().required().label("제목"),

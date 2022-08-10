@@ -17,7 +17,7 @@ export const useAuthStore = defineStore(
       };
 
       return await useFetch("https://api.booklog.dev/auth/register", {
-        method: "post",
+        method: "POST",
         body: body,
       });
     };

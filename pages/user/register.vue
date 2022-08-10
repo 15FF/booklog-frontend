@@ -35,9 +35,7 @@
       <v-snackbar v-model="registerAlert" location="bottom"
         >회원가입 실패
         <template v-slot:actions>
-          <v-btn color="red" @click="registerAlert = false">
-            닫기
-          </v-btn>
+          <v-btn color="red" @click="registerAlert = false"> 닫기 </v-btn>
         </template>
       </v-snackbar>
     </v-container>

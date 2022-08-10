@@ -55,5 +55,21 @@ export const useReviewSaveStore = defineStore("reviewSave", () => {
     };
   };
 
-  return { selectedBooks, title, rating, status, description, saveReview, resetSelectedBooks };
+  const resetReview = () => {
+    title.value = "";
+    rating.value = 5;
+    status.value = "PUBLIC";
+    description.value = "";
+  };
+
+  return {
+    selectedBooks,
+    title,
+    rating,
+    status,
+    description,
+    saveReview,
+    resetSelectedBooks,
+    resetReview,
+  };
 });

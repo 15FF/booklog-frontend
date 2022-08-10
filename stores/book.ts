@@ -12,13 +12,16 @@ export const useBookStore = defineStore("book", () => {
   const getBookList = async () => {
     const authStore = useAuthStore();
     bookList.value = [];
-    
-    const { data } = await useFetch("https://api.booklog.dev/books?bookQuery=" + bookQuery.value, {
-      method: "GET",
-      headers: {
-        Authorization: "Bearer " + authStore.accessToken,
-      },
-    });
+
+    const { data } = await useFetch(
+      "https://api.booklog.dev/books?bookQuery=" + bookQuery.value,
+      {
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + authStore.accessToken,
+        },
+      }
+    );
 
     data.value["items"].forEach((book) => {
       bookList.value.push(book);
