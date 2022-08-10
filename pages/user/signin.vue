@@ -29,9 +29,7 @@
       <v-snackbar v-model="signinAlert" location="bottom"
         >로그인 실패
         <template v-slot:actions>
-          <v-btn color="red" @click="signinAlert = false">
-            닫기
-          </v-btn>
+          <v-btn color="red" @click="signinAlert = false"> 닫기 </v-btn>
         </template>
       </v-snackbar>
     </v-container>

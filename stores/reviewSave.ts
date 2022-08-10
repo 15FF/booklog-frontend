@@ -54,7 +54,7 @@ export const useReviewSaveStore = defineStore("reviewSave", () => {
       isbn: "",
     };
   };
-  
+
   const resetReview = () => {
     title.value = "";
     rating.value = 5;
@@ -62,5 +62,14 @@ export const useReviewSaveStore = defineStore("reviewSave", () => {
     description.value = "";
   };
 
-  return { selectedBooks, title, rating, status, description, saveReview, resetSelectedBooks, resetReview };
+  return {
+    selectedBooks,
+    title,
+    rating,
+    status,
+    description,
+    saveReview,
+    resetSelectedBooks,
+    resetReview,
+  };
 });

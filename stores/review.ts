@@ -6,9 +6,12 @@ export const useReviewStore = defineStore("review", () => {
   const review = ref({});
 
   const getReview = async (id: string) => {
-    const { data, error } = await useFetch("https://api.booklog.dev/review/" + id, {
-      method: "GET",
-    });
+    const { data, error } = await useFetch(
+      "https://api.booklog.dev/review/" + id,
+      {
+        method: "GET",
+      }
+    );
 
     review.value = data.value;
 
