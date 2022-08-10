@@ -91,6 +91,7 @@ const getBookList = async () => {
   if (count == 0) {
     getBookListAlert.value = true;
   }
+
   reviewSaveStore.resetSelectedBooks();
 };
 
