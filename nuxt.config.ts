@@ -1,6 +1,7 @@
 import { defineNuxtConfig } from "nuxt";
 
 export default defineNuxtConfig({
+  ssr: false,
   // css
   css: [
     "~/assets/scss/index.scss",
