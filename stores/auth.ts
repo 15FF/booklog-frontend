@@ -44,7 +44,12 @@ export const useAuthStore = defineStore(
       return { data, error };
     };
 
-    return { accessToken, user, register, signin, isLogined, getUsername };
+    const signout = () => {
+      accessToken.value = "" 
+      user.value = ""
+    }
+
+    return { accessToken, user, register, signin, signout, isLogined, getUsername };
   },
   {
     persist: true,
