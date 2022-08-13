@@ -51,7 +51,7 @@ const toggleTheme = () => {
 const authStore = useAuthStore();
 
 const logout = () => {
-  authStore.accessToken = "";
+  authStore.signout();
   navigateTo("/");
 };
 </script>

@@ -7,6 +7,7 @@ export const useAuthStore = defineStore(
     const user = ref("");
 
     const isLogined = computed(() => (accessToken.value == "" ? false : true));
+    const getUsername = computed(() => user.value);
 
     const register = async (username, password) => {
       if (!username || !password) return;
@@ -43,7 +44,12 @@ export const useAuthStore = defineStore(
       return { data, error };
     };
 
-    return { accessToken, user, register, signin, isLogined };
+    const signout = () => {
+      accessToken.value = "" 
+      user.value = ""
+    }
+
+    return { accessToken, user, register, signin, signout, isLogined, getUsername };
   },
   {
     persist: true,

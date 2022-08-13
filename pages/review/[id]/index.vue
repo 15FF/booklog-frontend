@@ -36,7 +36,7 @@
         </v-card-item>
         <v-card-text> {{ reviewStore.review.description }}</v-card-text>
         <v-divider></v-divider>
-        <v-card-actions>
+        <v-card-actions v-if="authStore.getUsername == reviewStore.review.username">
           <v-spacer></v-spacer>
           <v-btn color="warning" :to="route.params.id + '/update'">수정</v-btn>
           <v-btn color="red" @click="isDeleteAlert = true">삭제</v-btn>
@@ -68,11 +68,13 @@
 </template>
 
 <script setup lang="ts">
+import { useAuthStore } from "~~/stores/auth";
 import { useReviewStore } from "~~/stores/review";
 
 const isDeleteAlert = ref(false);
 const deleteReviewAlert = ref(false);
 const route = useRoute();
+const authStore = useAuthStore();
 const reviewStore = useReviewStore();
 await reviewStore.getReview(route.params.id.toString());
 
