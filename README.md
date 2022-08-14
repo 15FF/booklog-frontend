@@ -1,42 +1,21 @@
-# Nuxt 3 Minimal Starter
+### BookLog
 
-Look at the [nuxt 3 documentation](https://v3.nuxtjs.org) to learn more.
+- 독서록을 작성할 수 있는 애플리케이션입니다.
+- 책에 대한 정보는 네이버 검색 API를 사용했습니다.
+- URL
+    - API: [https://api.booklog.dev/](https://api.booklog.dev/)
+    - Page: [https://booklog.dev/](https://booklog.dev/)
 
-## Setup
+### 사용 기술 및 환경 - Backend
 
-Make sure to install the dependencies:
+- NestJS, TypeORM
+- jest, super-test, ts-mockito
+- Azure VM, Azure Database for MySQL
+- Nginx, Jenkins
+- Sonarcloud
 
-```bash
-# yarn
-yarn install
+### 사용 기술 및 환경 - Frontend
 
-# npm
-npm install
-
-# pnpm
-pnpm install --shamefully-hoist
-```
-
-## Development Server
-
-Start the development server on http://localhost:3000
-
-```bash
-npm run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-npm run build
-```
-
-Locally preview production build:
-
-```bash
-npm run preview
-```
-
-Checkout the [deployment documentation](https://v3.nuxtjs.org/guide/deploy/presets) for more information.
+- Nuxt3
+- Cloudflare Pages
+- Sonarcloud
