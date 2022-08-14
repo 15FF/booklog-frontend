@@ -76,7 +76,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useBookStore } from "~~/stores/book";
 import { useReviewSaveStore } from "~~/stores/reviewSave";
 

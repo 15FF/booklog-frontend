@@ -80,7 +80,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useReviewSaveStore } from "~~/stores/reviewSave";
 import { Form } from "vee-validate";
 import * as yup from "yup";

@@ -41,7 +41,8 @@
     </v-container>
   </div>
 </template>
-<script setup>
+
+<script setup lang="ts">
 import { Form, useForm } from "vee-validate";
 import * as yup from "yup";
 import { useAuthStore } from "~~/stores/auth";

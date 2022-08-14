@@ -33,6 +33,7 @@
     </v-main>
   </v-layout>
 </template>
+
 <script lang="ts" setup>
 import { useTheme } from "vuetify";
 import { useAuthStore } from "~~/stores/auth";
