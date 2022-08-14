@@ -95,7 +95,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useReviewStore } from "~~/stores/review";
 import { Form } from "vee-validate";
 import * as yup from "yup";

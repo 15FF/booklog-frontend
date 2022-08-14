@@ -36,7 +36,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useAuthStore } from "~~/stores/auth";
 import { Form, useForm } from "vee-validate";
 import * as yup from "yup";
